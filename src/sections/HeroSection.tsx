@@ -31,13 +31,14 @@ export default function HeroSection() {
       style={{ padding: '0 var(--page-padding)', maxWidth: '1200px', margin: '0 auto' }}
     >
       <div className="flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16">
-        <div ref={photoRef} className="flex-shrink-0 order-1 md:order-2">
-          <div className="relative w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] rounded-full overflow-hidden border-2 border-[var(--green)] shadow-[0_0_0_6px_var(--green-tint)]">
+        <div ref={photoRef} className="flex-shrink-0 order-1 md:order-2 mx-auto">
+          <div className="group relative w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] rounded-full overflow-hidden border-2 border-[var(--green)] shadow-[0_0_0_6px_var(--green-tint)]">
             <img
               src="./assets/portrait-about.jpg"
               alt="Sachin Kanth"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale-[85%] contrast-125 brightness-90 saturate-[0.75] transition-all duration-500 group-hover:grayscale-0 group-hover:brightness-100 group-hover:saturate-100 group-hover:contrast-100"
             />
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy)]/50 via-transparent to-[var(--green)]/50 mix-blend-color opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
           </div>
         </div>
 
