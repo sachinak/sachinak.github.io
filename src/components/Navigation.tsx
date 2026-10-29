@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const navLinks = [
   { label: 'Projects', href: '/#featured-projects' },
@@ -12,6 +12,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,10 +30,16 @@ export default function Navigation() {
     setMobileOpen(false)
     if (href.startsWith('/#')) {
       const id = href.replace('/#', '')
-      setTimeout(() => {
+      const scrollToSection = () => {
         const el = document.getElementById(id)
         if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
+      }
+      if (location.pathname !== '/') {
+        navigate('/')
+        setTimeout(scrollToSection, 350)
+      } else {
+        setTimeout(scrollToSection, 100)
+      }
     }
   }
 
