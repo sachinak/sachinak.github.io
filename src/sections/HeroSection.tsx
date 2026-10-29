@@ -34,7 +34,7 @@ export default function HeroSection() {
         <div ref={photoRef} className="flex-shrink-0 order-1 md:order-2 mx-auto">
           <div className="relative w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] rounded-full overflow-hidden border-2 border-[var(--green)] shadow-[0_0_0_6px_var(--green-tint)]">
             <img
-              src="./assets/portrait-about.jpg"
+              src="./assets/portrait-about.jpeg"
               alt="Sachin Kanth"
               className="w-full h-full object-cover"
             />
