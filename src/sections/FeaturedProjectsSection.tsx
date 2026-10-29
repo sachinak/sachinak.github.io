@@ -1,220 +1,177 @@
-import { useState, useRef, useCallback } from 'react'
-import { gsap } from 'gsap'
-import SectionHeader from '../components/SectionHeader'
-import StarIcon from '../components/StarIcon'
+import NumberedHeading from '../components/NumberedHeading'
 import ScrollReveal from '../components/ScrollReveal'
 
-const filters = ['All', 'Tekrata', 'Previous Roles', 'Personal Project'] as const
-type Filter = (typeof filters)[number]
-
-interface Project {
-  label: string
-  labelType: string
+interface FeaturedProject {
+  overline: string
   title: string
-  tags: string[]
   description: string
+  tags: string[]
   link?: string
-  filter: Filter
 }
 
-const projects: Project[] = [
+interface OtherProject {
+  title: string
+  description: string
+  tags: string[]
+  link?: string
+}
+
+const featuredProjects: FeaturedProject[] = [
   {
-    label: 'TEKRATA',
-    labelType: 'TEKRATA',
+    overline: 'Tekrata',
     title: 'Healthcare Invoice AI Pipeline',
-    tags: ['LLM Pipelines', 'AWS Bedrock', 'Python'],
     description:
-      'Built an asynchronous Python/AWS (Lambda, S3, Bedrock) LLM pipeline using Claude to turn unstructured healthcare PDF invoices into validated JSON. Multistep consensus checks caught and corrected table-parsing errors, reaching 99.2% accuracy.',
-    filter: 'Tekrata',
+      'An asynchronous Python/AWS (Lambda, S3, Bedrock) LLM pipeline using Claude to turn unstructured healthcare PDF invoices into validated JSON. Multistep consensus checks catch and correct table-parsing errors, reaching 99.2% accuracy.',
+    tags: ['Python', 'AWS Bedrock', 'Claude', 'Lambda'],
   },
   {
-    label: 'TEKRATA',
-    labelType: 'TEKRATA',
+    overline: 'Tekrata',
     title: 'Healthcare Claims Platform',
-    tags: ['Next.js', 'Node.js', 'Claude Code'],
     description:
-      'Shipped end-to-end features for a healthcare claims workflow: a Next.js frontend and Node.js REST APIs that automate patient claim submission and real-time status tracking, using Claude Code to seed data and testing.',
-    filter: 'Tekrata',
+      'End-to-end features for a healthcare claims workflow: a Next.js frontend and Node.js REST APIs that automate patient claim submission and real-time status tracking, built with Claude Code seeding data and tests along the way.',
+    tags: ['Next.js', 'Node.js', 'REST APIs', 'Claude Code'],
   },
   {
-    label: 'TEKRATA',
-    labelType: 'TEKRATA',
-    title: 'Monolith to Microservices Migration',
-    tags: ['Go', 'Microservices', 'AI-Driven Testing'],
-    description:
-      'Led the decomposition of a legacy Go monolith into an interface-driven microservices framework so it could scale. AI-driven regression suites enforced 100% API contract parity and cut technical debt by 40%.',
-    filter: 'Tekrata',
-  },
-  {
-    label: 'FLEXGEN',
-    labelType: 'PREVIOUS ROLE',
-    title: 'IoT Data Pipeline & Observability',
-    tags: ['Kafka', 'Kubernetes', 'Grafana'],
-    description:
-      'Built event-driven Python/Kafka pipelines on Kubernetes for 1,000+ IoT devices, with Grafana for real-time anomaly detection — sustaining 99.9% data availability via staged CI/CD rollouts.',
-    filter: 'Previous Roles',
-  },
-  {
-    label: 'FLEXGEN',
-    labelType: 'PREVIOUS ROLE',
-    title: 'Zero-Downtime InfluxDB Migration',
-    tags: ['Terraform', 'Go', 'InfluxDB'],
-    description:
-      'Led a zero-downtime InfluxDB 1.8 to 2.6 migration with Terraform, refactoring Go services to Flux-based queries and improving query performance by 35%.',
-    filter: 'Previous Roles',
-  },
-  {
-    label: 'ELASTICRUN',
-    labelType: 'PREVIOUS ROLE',
-    title: 'In-House Ticketing Platform',
-    tags: ['Python', 'Vue.js', 'Full-Stack'],
-    description:
-      'Independently built a full-stack Python/VueJS ticketing platform end to end, replacing third-party SaaS vendors and saving $100,000 annually.',
-    filter: 'Previous Roles',
-  },
-  {
-    label: 'ELASTICRUN',
-    labelType: 'PREVIOUS ROLE',
-    title: 'High-Availability E-Commerce Backend',
-    tags: ['Go', 'Kubernetes', 'Kafka'],
-    description:
-      'Designed a high-availability Go/Kubernetes/Kafka backend for an e-commerce platform, adding gRPC and Redis caching to cut tail latency by 40% with 99.9% message delivery reliability.',
-    filter: 'Previous Roles',
-  },
-  {
-    label: 'EARLY CAREER',
-    labelType: 'PREVIOUS ROLE',
-    title: 'Multi-Tenant Backends & Enterprise Pipelines',
-    tags: ['Flask', 'MongoDB', 'MSSQL'],
-    description:
-      'Built a greenfield multi-tenant Flask/MongoDB backend with JWT/OTP auth and S3 storage at Wow Labz, and automated enterprise reporting pipelines with MSSQL/Python at MAQ Software (client Microsoft).',
-    filter: 'Previous Roles',
-  },
-  {
-    label: 'PROJECT',
-    labelType: 'PERSONAL PROJECT',
+    overline: 'Personal Project',
     title: 'Containerized Vulnerability Intelligence Backend',
-    tags: ['Go', 'Docker', 'REST APIs'],
     description:
-      'Built a containerized pipeline that automates ingestion and schema-validation of structured CVE data, serving it through high-performance REST APIs for downstream risk modeling.',
+      'A containerized pipeline that automates ingestion and schema-validation of structured CVE data, serving it through high-performance REST APIs for downstream risk modeling.',
+    tags: ['Go', 'Docker', 'REST APIs'],
     link: 'https://github.com/sachinak',
-    filter: 'Personal Project',
   },
 ]
 
+const otherProjects: OtherProject[] = [
+  {
+    title: 'Monolith to Microservices Migration',
+    description:
+      'Decomposed a legacy Go monolith into an interface-driven microservices framework; AI-driven regression suites enforced 100% API contract parity and cut technical debt by 40%.',
+    tags: ['Go', 'Microservices'],
+  },
+  {
+    title: 'IoT Data Pipeline & Observability',
+    description:
+      'Event-driven Python/Kafka pipelines on Kubernetes for 1,000+ IoT devices, with Grafana for real-time anomaly detection and 99.9% data availability.',
+    tags: ['Kafka', 'Kubernetes', 'Grafana'],
+  },
+  {
+    title: 'Zero-Downtime InfluxDB Migration',
+    description:
+      'Led a zero-downtime InfluxDB 1.8 to 2.6 migration with Terraform, refactoring Go services to Flux-based queries and improving query performance by 35%.',
+    tags: ['Terraform', 'Go', 'InfluxDB'],
+  },
+  {
+    title: 'In-House Ticketing Platform',
+    description:
+      'Full-stack Python/VueJS ticketing platform built end to end, replacing third-party SaaS vendors and saving $100,000 annually.',
+    tags: ['Python', 'Vue.js'],
+  },
+  {
+    title: 'High-Availability E-Commerce Backend',
+    description:
+      'High-availability Go/Kubernetes/Kafka backend with gRPC and Redis caching, cutting tail latency by 40% with 99.9% message delivery reliability.',
+    tags: ['Go', 'Kubernetes', 'Kafka'],
+  },
+  {
+    title: 'Multi-Tenant Backends & Enterprise Pipelines',
+    description:
+      'Greenfield multi-tenant Flask/MongoDB backend with JWT/OTP auth and S3 storage, plus automated MSSQL/Python reporting pipelines for an enterprise client.',
+    tags: ['Flask', 'MongoDB', 'MSSQL'],
+  },
+]
+
+function LinkIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  )
+}
+
+function FolderIcon() {
+  return (
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+    </svg>
+  )
+}
+
 export default function FeaturedProjectsSection() {
-  const [activeFilter, setActiveFilter] = useState<Filter>('All')
-  const gridRef = useRef<HTMLDivElement>(null)
-
-  const filteredProjects =
-    activeFilter === 'All' ? projects : projects.filter((p) => p.filter === activeFilter)
-
-  const animateFilterChange = useCallback((filter: Filter) => {
-    if (!gridRef.current) return
-    const cards = gridRef.current.children
-
-    gsap.to(cards, {
-      opacity: 0,
-      y: 10,
-      duration: 0.2,
-      stagger: 0.03,
-      onComplete: () => {
-        setActiveFilter(filter)
-        requestAnimationFrame(() => {
-          if (!gridRef.current) return
-          const newCards = gridRef.current.children
-          gsap.fromTo(
-            newCards,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power3.out' }
-          )
-        })
-      },
-    })
-  }, [])
-
   return (
     <section
-      id="featured-projects"
+      id="work"
       style={{
-        padding: 'var(--section-padding) var(--page-padding)',
-        background: 'var(--warm-paper)',
+        padding: 'var(--section-padding) 0',
+        maxWidth: '1000px',
+        margin: '0 auto',
       }}
     >
-      <div className="max-w-[var(--content-max-width)] mx-auto">
-        <SectionHeader
-          title="Featured Projects"
-          description="Selected work from Tekrata, previous engineering roles, and personal projects."
-        />
+      <div style={{ padding: '0 var(--page-padding)' }}>
+        <NumberedHeading number="03" title="Things I've Built" />
 
-        {/* Filter Tabs */}
-        <ScrollReveal delay={0.15} className="flex gap-2 mb-10 no-scrollbar overflow-x-auto pb-2">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              onClick={() => animateFilterChange(filter)}
-              className={`text-cta rounded-full px-5 py-2 border whitespace-nowrap transition-all duration-300 cursor-pointer ${
-                activeFilter === filter
-                  ? 'bg-[var(--deep-espresso)] text-[var(--soft-cream)] border-[var(--deep-espresso)]'
-                  : 'bg-transparent text-[var(--charcoal)] border-[var(--border-warm)] hover:bg-[var(--soft-cream)]'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </ScrollReveal>
-
-        {/* Project Grid */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {filteredProjects.map((project) => (
-            <div
-              key={project.title}
-              className="group bg-[var(--deep-espresso)] rounded p-8 border border-[rgba(245,240,232,0.1)] transition-all duration-350 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(43,27,23,0.2)]"
-            >
-              <span className="text-caption uppercase text-[rgba(245,240,232,0.5)] tracking-wider">
-                {project.labelType}
-              </span>
-              <h3 className="font-playfair font-extrabold text-[clamp(1.4rem,2.5vw,1.8rem)] text-[var(--soft-cream)] tracking-[0.02em] mt-3 mb-4">
+        {/* Featured projects */}
+        <div className="flex flex-col gap-16 md:gap-20">
+          {featuredProjects.map((project) => (
+            <ScrollReveal key={project.title}>
+              <p className="font-mono text-[var(--green)] text-[0.85rem] mb-2">{project.overline}</p>
+              <h3 className="text-[1.3rem] sm:text-[1.5rem] font-semibold text-[var(--lightest-slate)] mb-4">
                 {project.title}
               </h3>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-caption text-[rgba(245,240,232,0.6)] border border-[rgba(245,240,232,0.2)] rounded-full px-3 py-1"
-                  >
+              <div className="bg-[var(--light-navy)] border-l-2 border-[var(--green)] rounded p-6 text-body max-w-[640px]">
+                {project.description}
+              </div>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4 font-mono text-[0.8rem] text-[var(--slate)]">
+                {project.tags.map((tag, i) => (
+                  <span key={tag}>
                     {tag}
+                    {i < project.tags.length - 1 ? <span className="mx-3 text-[var(--lightest-navy)]">·</span> : null}
                   </span>
                 ))}
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--lightest-slate)] hover:text-[var(--green)] transition-colors duration-300"
+                    aria-label="View source"
+                  >
+                    <LinkIcon />
+                  </a>
+                )}
               </div>
-              <p className="text-[rgba(245,240,232,0.7)] text-base leading-relaxed mb-5">
-                {project.description}
-              </p>
-              {project.link ? (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-nav text-[var(--gold)] hover:text-[var(--soft-cream)] transition-colors duration-300 inline-flex items-center gap-2"
-                >
-                  Learn More <span>&rarr;</span>
-                </a>
-              ) : (
-                <span className="text-nav text-[var(--gold)] opacity-60 inline-flex items-center gap-2">
-                  Learn More <span>&rarr;</span>
-                </span>
-              )}
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        {/* Decorative Star */}
-        <div className="flex justify-center mt-12 md:mt-16">
-          <StarIcon size={80} rotation={30} />
-        </div>
+        {/* Other noteworthy projects */}
+        <ScrollReveal className="mt-24 md:mt-28 mb-10 text-center">
+          <p className="font-mono text-[var(--green)] text-[0.85rem] mb-2">More</p>
+          <h3 className="text-h2">Other Noteworthy Projects</h3>
+        </ScrollReveal>
+
+        <ScrollReveal stagger={0.08} y={25} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {otherProjects.map((project) => (
+            <div
+              key={project.title}
+              className="bg-[var(--light-navy)] rounded p-6 flex flex-col transition-transform duration-300 hover:-translate-y-1.5"
+            >
+              <div className="flex items-center justify-between mb-5">
+                <FolderIcon />
+              </div>
+              <h4 className="text-[1.05rem] font-semibold text-[var(--lightest-slate)] mb-2">
+                {project.title}
+              </h4>
+              <p className="text-body text-[0.9rem] flex-grow">{project.description}</p>
+              <div className="flex flex-wrap gap-x-3 gap-y-1 mt-4 font-mono text-[0.75rem] text-[var(--slate)]">
+                {project.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </ScrollReveal>
       </div>
     </section>
   )

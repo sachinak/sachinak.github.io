@@ -1,18 +1,16 @@
-import VerticalSidebar from '../components/VerticalSidebar'
 import HeroSection from '../sections/HeroSection'
-import FeaturedProjectsSection from '../sections/FeaturedProjectsSection'
-import ExpertiseSection from '../sections/ExpertiseSection'
 import AboutSection from '../sections/AboutSection'
+import ExperienceSection from '../sections/ExperienceSection'
+import FeaturedProjectsSection from '../sections/FeaturedProjectsSection'
 import ContactCTASection from '../sections/ContactCTASection'
 
 export default function IndexPage() {
   return (
     <>
-      <VerticalSidebar text="AI & SOFTWARE ENGINEER" />
       <HeroSection />
-      <FeaturedProjectsSection />
-      <ExpertiseSection />
       <AboutSection />
+      <ExperienceSection />
+      <FeaturedProjectsSection />
       <ContactCTASection />
     </>
   )

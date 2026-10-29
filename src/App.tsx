@@ -1,18 +1,16 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navigation from './components/Navigation'
+import SocialSidebar from './components/SocialSidebar'
+import EmailSidebar from './components/EmailSidebar'
 import Footer from './components/Footer'
-import FilmGrain from './components/FilmGrain'
 import IndexPage from './pages/IndexPage'
-import ContactPage from './pages/ContactPage'
 
 gsap.registerPlugin(ScrollTrigger)
 
 function App() {
-  const location = useLocation()
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
@@ -22,33 +20,23 @@ function App() {
     lenisRef.current = lenis
 
     lenis.on('scroll', ScrollTrigger.update)
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000)
-    })
+    const update = (time: number) => lenis.raf(time * 1000)
+    gsap.ticker.add(update)
     gsap.ticker.lagSmoothing(0)
 
     return () => {
       lenis.destroy()
-      gsap.ticker.remove(lenis.raf as any)
+      gsap.ticker.remove(update)
     }
   }, [])
 
-  useEffect(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true })
-    }
-    ScrollTrigger.refresh()
-  }, [location.pathname])
-
   return (
     <div className="relative">
-      <FilmGrain />
       <Navigation />
+      <SocialSidebar />
+      <EmailSidebar />
       <main>
-        <Routes>
-          <Route path="/" element={<IndexPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
+        <IndexPage />
       </main>
       <Footer />
     </div>

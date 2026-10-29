@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 interface ScrollRevealProps {
   children: React.ReactNode
   className?: string
+  style?: React.CSSProperties
   delay?: number
   y?: number
   stagger?: number
@@ -16,6 +17,7 @@ interface ScrollRevealProps {
 export default function ScrollReveal({
   children,
   className = '',
+  style,
   delay = 0,
   y = 40,
   stagger = 0.12,
@@ -56,7 +58,7 @@ export default function ScrollReveal({
   }, { scope: ref })
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} style={style}>
       {children}
     </div>
   )
