@@ -5,11 +5,11 @@ import CTAButton from '../components/CTAButton'
 import StarIcon from '../components/StarIcon'
 
 const ringPhrases = [
-  'Digital Technology Leader',
-  'Solving real problems, not just shipping features',
-  'Bridging Strategy, Engineering & Design',
-  'Based in Toronto \u00B7 Originally from Bangalore',
-  'Coffee nerd \u00B7 Fitness enthusiast \u00B7 Story collector',
+  'AI & Backend Engineer',
+  'Building LLM Pipelines & Agentic Workflows',
+  'Python \u00B7 Go \u00B7 TypeScript',
+  'M.S. Computer Science, NC State University',
+  'From monoliths to microservices, data to decisions',
 ]
 
 export default function HeroSection() {
@@ -144,7 +144,7 @@ export default function HeroSection() {
         ref={taglineRef}
         className="font-caveat text-[clamp(1.2rem,2vw,1.5rem)] text-[var(--crimson)] text-center mt-6 md:mt-8"
       >
-        Building things that matter — at work and in life.
+        Turning unstructured problems into reliable, scalable systems.
       </p>
 
       {/* CTAs */}

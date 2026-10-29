@@ -77,7 +77,7 @@ export default function ContactCTASection() {
           ref={subtitleRef}
           className="text-body-large text-[var(--charcoal)] max-w-[600px] mt-6"
         >
-          Have a project in mind? Let&apos;s grab a coffee (virtual or pour-over) and talk about what we could build.
+          Have a project, a role, or a hard problem in mind? I&apos;d love to hear about it.
         </p>
 
         <div ref={linksRef} className="flex flex-wrap items-center gap-4 mt-10">
@@ -87,7 +87,7 @@ export default function ContactCTASection() {
           >
             LinkedIn
           </CTAButton>
-          <CTAButton variant="secondary">GitHub</CTAButton>
+          <CTAButton variant="secondary" href="https://github.com/sachinak">GitHub</CTAButton>
           <CTAButton to="/contact">Schedule a Call</CTAButton>
         </div>
 

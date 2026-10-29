@@ -5,10 +5,10 @@ import CTAButton from '../components/CTAButton'
 import StarIcon from '../components/StarIcon'
 
 const conversationCards = [
-  { topic: 'Product Strategy', quote: "Let's build something real." },
-  { topic: 'Gen AI & Tech', quote: "What's coming next?" },
-  { topic: 'Coffee & Ideas', quote: 'Pour-over or espresso?' },
-  { topic: 'Toronto Stories', quote: 'The best conversations happen here.' },
+  { topic: 'AI & LLM Systems', quote: "Let's build something that ships." },
+  { topic: 'Backend & Cloud', quote: 'Scale it, then scale it again.' },
+  { topic: 'Open Source', quote: 'Always happy to collaborate.' },
+  { topic: 'Opportunities', quote: "I'm open to the right conversation." },
 ]
 
 export default function ContactFormSection() {
@@ -70,7 +70,7 @@ export default function ContactFormSection() {
           ref={inviteRef}
           className="text-body-large text-[var(--charcoal)] max-w-[520px] mx-auto mt-6"
         >
-          Whether it&apos;s a project, a crazy idea, or just a good conversation — my door (and inbox) is open.
+          Whether it&apos;s a project, a role, or a technical rabbit hole worth going down — my inbox is open.
         </p>
 
         {/* Conversation Starter Cards */}

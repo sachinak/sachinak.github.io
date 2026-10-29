@@ -16,13 +16,13 @@ const expertiseCards = [
         <line x1="42" y1="24" x2="46" y2="24" />
       </svg>
     ),
-    title: 'Strategy & Product',
+    title: 'AI & LLM Systems',
     skills: [
-      'Product Strategy & Roadmapping',
-      'Platform Development',
-      'Digital Transformation',
-      'Business Analysis',
-      'Generative AI Strategy',
+      'LLM Pipelines & Agentic Workflows',
+      'Claude, AWS Bedrock, OpenAI API',
+      'Consensus & Validation Checks',
+      'Claude Code',
+      'Retrieval & Document Intelligence',
     ],
   },
   {
@@ -33,12 +33,12 @@ const expertiseCards = [
         <line x1="20" y1="38" x2="28" y2="10" />
       </svg>
     ),
-    title: 'Engineering & Design',
+    title: 'Full-Stack & Backend',
     skills: [
-      'Full-Stack Development',
-      'Python, Java, JavaScript',
-      'React, Node.js, SQL/NoSQL',
-      'UI/UX Design',
+      'Python (Expert), Golang, TypeScript',
+      'Next.js, React, Vue, Node.js',
+      'REST APIs, gRPC, Microservices',
+      'MongoDB, MySQL, Redis, Kafka',
       'Technical Architecture',
     ],
   },
@@ -52,20 +52,20 @@ const expertiseCards = [
         <circle cx="28" cy="18" r="1.5" fill="#c9912d" />
       </svg>
     ),
-    title: 'Entrepreneurship & Media',
+    title: 'Cloud & Infrastructure',
     skills: [
-      'Business Strategy & Operations',
-      'F&B Entrepreneurship',
-      'Podcast Production',
-      'Content Strategy',
-      'Community Building',
+      'AWS (Lambda, S3, Bedrock, SNS/SES)',
+      'Azure, Kubernetes, Docker',
+      'Terraform, CI/CD',
+      'Distributed Systems',
+      'Observability & Monitoring',
     ],
   },
 ]
 
 const stats = [
-  'Strategy without execution is just a plan. I make sure things ship.',
-  'I live in the space where engineering meets empathy — where code becomes craft.',
+  '99.2% accuracy on an LLM pipeline turning unstructured healthcare invoices into validated JSON.',
+  'Decomposed a legacy Go monolith into microservices, cutting technical debt by 40%.',
 ]
 
 export default function ExpertiseSection() {
@@ -80,7 +80,7 @@ export default function ExpertiseSection() {
       <div className="max-w-[var(--content-max-width)] mx-auto">
         <SectionHeader
           title="What I Do"
-          description="Three pillars of practice built across consulting rooms, startup garages, and restaurant kitchens."
+          description="Three pillars of practice built across production AI systems, distributed backends, and cloud infrastructure."
           light
         />
 

@@ -5,33 +5,33 @@ import ScrollReveal from '../components/ScrollReveal'
 const educationCards = [
   {
     category: 'EDUCATION',
-    title: 'Masters in Digital Innovation',
-    description: 'Global Innovation Management — building innovation capability across borders and cultures.',
-    handwritten: 'Learning never stops',
+    title: 'M.S. Computer Science',
+    description: 'North Carolina State University, Raleigh — Aug 2023 to May 2025.',
+    handwritten: 'Go Pack',
   },
   {
-    category: 'SPORTS',
-    title: 'Cricket Player',
-    description: 'Team player on and off the field. The discipline of sport shapes how I approach every challenge.',
-    handwritten: 'On and off the field',
+    category: 'EDUCATION',
+    title: 'B.Tech, Computer Science & Engineering',
+    description: 'Indian Institute of Information Technology, Pune — Aug 2016 to Jun 2020.',
+    handwritten: 'Where it started',
   },
   {
-    category: 'MEDIA',
-    title: 'Podcast Host',
-    description: 'FutureNow Toronto — conversations with the people shaping what\'s next in tech and culture.',
-    handwritten: 'Everyone has a story',
+    category: 'AI & LLM',
+    title: 'Agentic Systems',
+    description: 'LLM pipelines, agentic workflows, and consensus/validation checks with Claude, AWS Bedrock, and the OpenAI API.',
+    handwritten: 'Trust, but verify',
   },
   {
-    category: 'CITY',
-    title: 'Toronto \u00B7 Bangalore',
-    description: 'Two cities, two rhythms. The best ideas come from living between worlds.',
-    handwritten: 'Home is where the WiFi is',
+    category: 'CLOUD',
+    title: 'Infrastructure at Scale',
+    description: 'AWS, Azure, Kubernetes, Docker, and Terraform — shipping with CI/CD, not around it.',
+    handwritten: 'Ship it, then scale it',
   },
 ]
 
 const philosophyQuotes = [
-  'I believe in building with empathy \u2014 technology should make people\'s lives better, not more complicated.',
-  'Every product tells a story. My job is to make sure it\'s one worth telling.',
+  'I believe AI should augment judgment, not replace rigor — every pipeline needs a way to check its own work.',
+  'Good engineering is invisible: systems that stay up, migrations nobody notices, and code the next person can trust.',
 ]
 
 export default function AboutSection() {
@@ -70,21 +70,21 @@ export default function AboutSection() {
           {/* Bio */}
           <ScrollReveal delay={0.2} className="w-full md:w-[55%]">
             <p className="font-playfair font-bold italic text-[clamp(1.1rem,1.8vw,1.25rem)] text-[var(--deep-espresso)] mb-6">
-              I work at the intersection of technology, strategy, and human connection.
+              I build systems that turn messy, real-world data into something reliable — and AI into something you can trust.
             </p>
             <div className="text-[var(--charcoal)] leading-[1.7] space-y-4">
               <p>
-                I am a Digital Technology Manager at Deloitte, where I lead product strategy for internal platforms and Gen AI solutions. My role sits at the crossroads of business strategy and technical execution — translating complex organizational needs into platforms and products that people actually want to use.
+                I'm an AI Engineer at Tekrata, where I build LLM pipelines and agentic workflows that turn unstructured data — healthcare invoices, claims documents — into validated, production-grade output, and ship the full-stack features that put that work in front of real users.
               </p>
               <p>
-                Before Deloitte, I built things on my own terms — TechX, a player management tool for sports academies; Ariento Restaurants, a hospitality venture; and FutureNow Toronto, a podcast about the city's evolving tech landscape. Each venture taught me something different about what it takes to go from idea to reality.
+                Before Tekrata, I worked across the stack: building IoT data pipelines and leading a zero-downtime database migration at FlexGen, designing a high-availability Go backend and an in-house ticketing platform at ElasticRun, and shipping backend systems at Wow Labz and MAQ Software (client Microsoft). I hold an M.S. in Computer Science from NC State and a B.Tech from IIIT Pune.
               </p>
               <p>
-                When I am not building, I am exploring — Toronto's food scene, Bangalore's tech corridors, the latest in AI research, or the perfect pour-over coffee. I believe the best products come from people who live fully outside of work.
+                I like problems that sit at the edge of what AI can be trusted to do on its own — where the interesting work is building the validation and consensus checks around it, not just the model call itself.
               </p>
             </div>
             <p className="font-caveat text-[clamp(1.2rem,2vw,1.4rem)] text-[var(--crimson)] italic mt-6">
-              Let&apos;s build something meaningful together.
+              Let&apos;s build something reliable together.
             </p>
           </ScrollReveal>
         </div>
@@ -92,7 +92,7 @@ export default function AboutSection() {
         {/* Marquee */}
         <Marquee speed={40} gradient={false} className="mb-10 md:mb-12">
           <span className="text-[0.85rem] uppercase tracking-[0.08em] text-[var(--charcoal)] opacity-40 mx-4">
-            Human-Centered &middot; Strategy-Led &middot; Toronto &middot; Bangalore &middot; Coffee Enthusiast &middot; Cricket Player &middot; Podcast Host &middot; Restaurant Builder &middot; AI Explorer &middot;
+            AI Engineering &middot; LLM Pipelines &middot; Full-Stack Development &middot; Cloud Infrastructure &middot; Microservices &middot; Distributed Systems &middot; Python &middot; Go &middot;
           </span>
         </Marquee>
 

@@ -21,11 +21,18 @@ export default function Footer() {
               LinkedIn
             </a>
             <span>&middot;</span>
-            <span className="opacity-50">GitHub</span>
+            <a
+              href="https://github.com/sachinak"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--crimson)] transition-colors duration-300"
+            >
+              GitHub
+            </a>
           </div>
         </div>
         <p className="text-caption text-[var(--charcoal)] text-center">
-          Built with intention between Toronto and Bangalore
+          Built with React, TypeScript, and a healthy amount of Claude Code
         </p>
       </div>
     </footer>

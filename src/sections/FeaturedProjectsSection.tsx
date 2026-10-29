@@ -4,7 +4,7 @@ import SectionHeader from '../components/SectionHeader'
 import StarIcon from '../components/StarIcon'
 import ScrollReveal from '../components/ScrollReveal'
 
-const filters = ['All', 'Deloitte', 'Ventures', 'Publications'] as const
+const filters = ['All', 'Tekrata', 'Previous Roles', 'Personal Project'] as const
 type Filter = (typeof filters)[number]
 
 interface Project {
@@ -19,62 +19,86 @@ interface Project {
 
 const projects: Project[] = [
   {
-    label: 'DELoitte',
-    labelType: 'DELoitte',
-    title: 'Internal Platforms',
-    tags: ['Platform Strategy', 'Enterprise Architecture', 'Digital Transformation'],
+    label: 'TEKRATA',
+    labelType: 'TEKRATA',
+    title: 'Healthcare Invoice AI Pipeline',
+    tags: ['LLM Pipelines', 'AWS Bedrock', 'Python'],
     description:
-      'Leading the development and deployment of internal platforms at Deloitte. Driving digital transformation by building scalable, self-service digital infrastructure across the firm.',
-    filter: 'Deloitte',
+      'Built an asynchronous Python/AWS (Lambda, S3, Bedrock) LLM pipeline using Claude to turn unstructured healthcare PDF invoices into validated JSON. Multistep consensus checks caught and corrected table-parsing errors, reaching 99.2% accuracy.',
+    filter: 'Tekrata',
   },
   {
-    label: 'DELoitte',
-    labelType: 'DELoitte',
-    title: 'Gen AI Solutions',
-    tags: ['Generative AI', 'Product Strategy', 'Emerging Tech'],
+    label: 'TEKRATA',
+    labelType: 'TEKRATA',
+    title: 'Healthcare Claims Platform',
+    tags: ['Next.js', 'Node.js', 'Claude Code'],
     description:
-      'Leading the Gen AI offerings portfolio at Deloitte — shaping product strategy, identifying high-value use cases, and bringing emerging technology solutions to market.',
-    filter: 'Deloitte',
+      'Shipped end-to-end features for a healthcare claims workflow: a Next.js frontend and Node.js REST APIs that automate patient claim submission and real-time status tracking, using Claude Code to seed data and testing.',
+    filter: 'Tekrata',
   },
   {
-    label: 'VENTURE',
-    labelType: 'VENTURE',
-    title: 'TechX Player Management Tool',
-    tags: ['Product Management', 'Sports Tech', 'Full-Stack'],
+    label: 'TEKRATA',
+    labelType: 'TEKRATA',
+    title: 'Monolith to Microservices Migration',
+    tags: ['Go', 'Microservices', 'AI-Driven Testing'],
     description:
-      'An all-in-one platform to manage players, analyze performance data, and streamline operations for sports academies. Designed and shipped the full product from concept to launch.',
-    link: 'https://www.techxplayermanagementtool.com/',
-    filter: 'Ventures',
+      'Led the decomposition of a legacy Go monolith into an interface-driven microservices framework so it could scale. AI-driven regression suites enforced 100% API contract parity and cut technical debt by 40%.',
+    filter: 'Tekrata',
   },
   {
-    label: 'VENTURE',
-    labelType: 'VENTURE',
-    title: 'FutureNow Toronto Podcast',
-    tags: ['Podcast', 'Media', 'Community'],
+    label: 'FLEXGEN',
+    labelType: 'PREVIOUS ROLE',
+    title: 'IoT Data Pipeline & Observability',
+    tags: ['Kafka', 'Kubernetes', 'Grafana'],
     description:
-      'A podcast exploring the intersection of technology, culture, and what comes next. Conversations with builders, thinkers, and the people shaping Toronto\'s tech future.',
-    link: 'https://www.futurenowtoronto.com/',
-    filter: 'Ventures',
+      'Built event-driven Python/Kafka pipelines on Kubernetes for 1,000+ IoT devices, with Grafana for real-time anomaly detection — sustaining 99.9% data availability via staged CI/CD rollouts.',
+    filter: 'Previous Roles',
   },
   {
-    label: 'VENTURE',
-    labelType: 'VENTURE',
-    title: 'Ariento Restaurants',
-    tags: ['F&B', 'Entrepreneurship', 'Hospitality'],
+    label: 'FLEXGEN',
+    labelType: 'PREVIOUS ROLE',
+    title: 'Zero-Downtime InfluxDB Migration',
+    tags: ['Terraform', 'Go', 'InfluxDB'],
     description:
-      'A restaurant venture bringing thoughtfully curated dining experiences to life. From concept to operations — building something people genuinely want to gather around.',
-    link: 'https://ariento-restaurants.vercel.app/',
-    filter: 'Ventures',
+      'Led a zero-downtime InfluxDB 1.8 to 2.6 migration with Terraform, refactoring Go services to Flux-based queries and improving query performance by 35%.',
+    filter: 'Previous Roles',
   },
   {
-    label: 'PUBLICATION',
-    labelType: 'PUBLICATION',
-    title: 'Latest Tech News',
-    tags: ['Tech Writing', 'Curation', 'Daily Digest'],
+    label: 'ELASTICRUN',
+    labelType: 'PREVIOUS ROLE',
+    title: 'In-House Ticketing Platform',
+    tags: ['Python', 'Vue.js', 'Full-Stack'],
     description:
-      'A curated daily digest of the most important stories in technology — cutting through the noise to deliver what actually matters to builders and decision-makers.',
-    link: 'https://latest-tech-news.vercel.app/',
-    filter: 'Publications',
+      'Independently built a full-stack Python/VueJS ticketing platform end to end, replacing third-party SaaS vendors and saving $100,000 annually.',
+    filter: 'Previous Roles',
+  },
+  {
+    label: 'ELASTICRUN',
+    labelType: 'PREVIOUS ROLE',
+    title: 'High-Availability E-Commerce Backend',
+    tags: ['Go', 'Kubernetes', 'Kafka'],
+    description:
+      'Designed a high-availability Go/Kubernetes/Kafka backend for an e-commerce platform, adding gRPC and Redis caching to cut tail latency by 40% with 99.9% message delivery reliability.',
+    filter: 'Previous Roles',
+  },
+  {
+    label: 'EARLY CAREER',
+    labelType: 'PREVIOUS ROLE',
+    title: 'Multi-Tenant Backends & Enterprise Pipelines',
+    tags: ['Flask', 'MongoDB', 'MSSQL'],
+    description:
+      'Built a greenfield multi-tenant Flask/MongoDB backend with JWT/OTP auth and S3 storage at Wow Labz, and automated enterprise reporting pipelines with MSSQL/Python at MAQ Software (client Microsoft).',
+    filter: 'Previous Roles',
+  },
+  {
+    label: 'PROJECT',
+    labelType: 'PERSONAL PROJECT',
+    title: 'Containerized Vulnerability Intelligence Backend',
+    tags: ['Go', 'Docker', 'REST APIs'],
+    description:
+      'Built a containerized pipeline that automates ingestion and schema-validation of structured CVE data, serving it through high-performance REST APIs for downstream risk modeling.',
+    link: 'https://github.com/sachinak',
+    filter: 'Personal Project',
   },
 ]
 
@@ -120,7 +144,7 @@ export default function FeaturedProjectsSection() {
       <div className="max-w-[var(--content-max-width)] mx-auto">
         <SectionHeader
           title="Featured Projects"
-          description="Selected work from Deloitte, independent ventures, and the spaces between."
+          description="Selected work from Tekrata, previous engineering roles, and personal projects."
         />
 
         {/* Filter Tabs */}
